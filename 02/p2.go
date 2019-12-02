@@ -47,10 +47,8 @@ func main() {
 
 	for noun := 0; noun < 100; noun++ {
 		for verb := 0; verb < 100; verb++ {
-			var curr_is []int
-			for p := 0; p < len(is); p++ {
-				curr_is = append(curr_is, is[p])
-			}
+			curr_is := make([]int, len(is))
+			copy(curr_is, is)
 			curr_is[1] = noun
 			curr_is[2] = verb
 
