@@ -8,24 +8,26 @@ import (
 	"strings"
 )
 
-func run(is *[]int) {
-	for i := 0; i < len(*is); i = i + 4 {
-		if (*is)[i] == 99 {
-			return
+func run(is []int) int {
+	for i := 0; i < len(is); i = i + 4 {
+		if is[i] == 99 {
+			return is[0]
 		}
 
 		p := i + 1
-		op1 := (*is)[(*is)[p]]
+		op1 := is[is[p]]
 		p++
-		op2 := (*is)[(*is)[p]]
+		op2 := is[is[p]]
 		p++
-		dest := (*is)[p]
-		if (*is)[i] == 1 {
-			(*is)[dest] = op1 + op2
-		} else if (*is)[i] == 2 {
-			(*is)[dest] = op1 * op2
+		dest := is[p]
+		if is[i] == 1 {
+			is[dest] = op1 + op2
+		} else if is[i] == 2 {
+			is[dest] = op1 * op2
 		}
 	}
+
+	return 0
 }
 
 func main() {
@@ -43,6 +45,5 @@ func main() {
 	}
 	is[1] = 12
 	is[2] = 2
-	run(&is)
-	fmt.Println(is[0])
+	fmt.Println(run(is))
 }
