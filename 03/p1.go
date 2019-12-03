@@ -15,39 +15,39 @@ func abs(n int) int {
 	return n
 }
 
-func process(grids *[][]int, wiring string, wire_id int) int {
+func process(grids *[][]int, wiring string, wireId int) int {
 	mvts := strings.Split(wiring, ",")
-	curr_x := 10000
-	curr_y := 10000
-	min_dist := 2 * (curr_x + curr_y)
+	currX := 10000
+	currY := 10000
+	minDist := 2 * (currX + currY)
 	for m := range mvts {
-		mvt_dist, _ := strconv.Atoi(mvts[m][1:])
+		mvtDist, _ := strconv.Atoi(mvts[m][1:])
 		dir := mvts[m][0:1]
 
-		for d := 0; d < mvt_dist; d++ {
+		for d := 0; d < mvtDist; d++ {
 			if dir == "U" {
-				curr_y--
+				currY--
 			} else if dir == "D" {
-				curr_y++
+				currY++
 			} else if dir == "L" {
-				curr_x--
+				currX--
 			} else if dir == "R" {
-				curr_x++
+				currX++
 			}
-			if (*grids)[curr_y][curr_x] == 0 ||
-				(*grids)[curr_y][curr_x] == wire_id {
-				(*grids)[curr_y][curr_x] = wire_id
+			if (*grids)[currY][currX] == 0 ||
+				(*grids)[currY][currX] == wireId {
+				(*grids)[currY][currX] = wireId
 			} else {
-				cross_dist := abs(curr_x-10000) +
-					abs(curr_y-10000)
-				if min_dist > cross_dist {
-					min_dist = cross_dist
+				crossDist := abs(currX-10000) +
+					abs(currY-10000)
+				if minDist > crossDist {
+					minDist = crossDist
 				}
 			}
 		}
 	}
 
-	return min_dist
+	return minDist
 }
 
 func main() {
